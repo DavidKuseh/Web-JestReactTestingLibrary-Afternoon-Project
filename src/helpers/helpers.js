@@ -17,11 +17,21 @@ export function sum(...numbers) {
   });
 }
 
-export function multiply(a, b) {
-  if (typeof a !== 'number' || typeof b !== 'number') {
-    throw new Error('numbers required');
+export function multiply(...numbers) {
+  const enoughArgs = numbers.length > 1;
+  if (!enoughArgs) return null;
+
+  const somethingNotNumber = numbers.some(number => {
+    return typeof number !== 'number';
+  });
+
+  if (somethingNotNumber) {
+    throw new Error('I want numbers');
   }
-  return a * b;
+
+  return numbers.reduce((acc, currentNumber) => {
+    return acc * currentNumber;
+  });
 }
 
 export function personMaker(name, age) {
@@ -33,3 +43,20 @@ export function personMaker(name, age) {
 }
 
 // BUILD YOUR OWN UTILITY FUNCTIONS AND TEST THEM OUT!
+
+export function divide (...numbers) {
+  const enoughArgs = numbers.length >  1;
+  if (!enoughArgs) return null;
+
+  const somethingNotNumber = numbers.some(number => {
+    return typeof number !== 'number';
+  });
+
+  if (somethingNotNumber) {
+    throw new Error('I want numbers');
+  }
+
+  return numbers.reduce((acc, currentNumber) => {
+    return acc / currentNumber;
+  })
+}

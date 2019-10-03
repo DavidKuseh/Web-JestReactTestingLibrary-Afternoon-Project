@@ -28,6 +28,18 @@ describe('sum', () => {
 
 describe('multiply', () => {
   // write tests! <================================================
+  it('returns null if fed a single argument', () => {
+    expect(helpers.multiply(2)).toBe(null);
+  })
+  it('multiplies two negative numbers correctly', () =>{
+    expect(helpers.multiply(-4,-6)).toBe(24);
+  })
+  it('throws if fed something which is not a number', () => {
+    expect(() => helpers.multiply('4','6')).toThrow();
+  })
+  it('can multiply three numbers', () => {
+    expect(helpers.multiply(1,2,3)).toBe(6);
+  })
 });
 
 describe('personMaker', () => {
@@ -40,5 +52,32 @@ describe('personMaker', () => {
       });
   });
 
+  it('throws if the age is a string', () => {
+    expect(helpers.personMaker('peter', '4'))
+    .not.toMatchObject({
+      id: '123',
+      name: 'peter',
+      age: 4,
+    });
+  });
+
+  it('throws if only one parameter is passed', () => {
+    expect(helpers.personMaker('peter'))
+    .not.toMatchObject({
+      id: '123',
+      name: 'peter',
+      age: 4,
+    });
+  });
+
   // write more tests! <===========================================
 });
+
+describe('divide', () => {
+  it('returns null if fed no argument', () => {
+    expect(helpers.divide()).toBe(null);
+  })
+  it('returns positive number when a negative number is divided by another negative number', () =>{
+    expect(helpers.divide(-16,-4)).toBe(4);
+  })
+})
